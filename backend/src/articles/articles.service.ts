@@ -113,6 +113,7 @@ export class ArticlesService {
     while (await this.prisma.article.findUnique({ where: { slug } })) {
       slug = `${baseSlug}-${suffix++}`;
     }
+
     const article = await this.prisma.article.create({
       data: {
         slug,
@@ -120,11 +121,17 @@ export class ArticlesService {
         description: dto.description,
         body: dto.body,
         authorId: userId,
-        articleTags: {
-          create: await this.ensureTags(dto.tagList ?? []),
-        },
       },
     });
+
+    if (dto.tagList?.length) {
+      const tagLinks = await this.ensureTags(dto.tagList, article.id);
+      await this.prisma.articleTag.createMany({
+        data: tagLinks,
+        skipDuplicates: true,
+      });
+    }
+
     return this.getBySlug(article.slug, userId);
   }
 
