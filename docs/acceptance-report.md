@@ -1,48 +1,49 @@
 # RealWorld Vue3 + NestJS OpenClaw Multi-Agent 验收报告（P0）
 
-> 说明：按你的指令，当前阶段先跳过 MySQL 安装与真实迁移落库，先完成其余任务。
+## 验收标准状态总览（最终）
 
-## 验收标准状态总览（当前）
-
-1. 可启动的前端：**通过（构建通过，可启动）**
-2. 可启动的后端：**通过（构建/单测/e2e-smoke 通过，可启动）**
-3. 可连接的 MySQL：**跳过（按用户指令）**
-4. 通过 Prisma 校验和迁移：**部分通过（validate/generate 通过；migrate 跳过）**
+1. 可启动的前端：**通过**
+2. 可启动的后端：**通过**
+3. 可连接的 MySQL：**通过（192.168.31.16:3306）**
+4. 通过 Prisma 校验和迁移：**通过（migrate status up-to-date）**
 5. 通过后端 build：**通过**
 6. 通过后端 test：**通过**
 7. 通过前端 build：**通过**
-8. MVP 功能可用：**代码实现完成，待 MySQL 环境做端到端实测闭环**
+8. MVP 功能可用：**通过（e2e-mvp 脚本全流程通过）**
 9. 输出完整验收报告：**通过（本文件）**
 
 ---
 
-## 自动验收脚本（无 MySQL 模式）
+## 本轮关键结果
 
-脚本：`scripts/acceptance-no-mysql.sh`
-
-执行结果（2026-05-04）：
-- backend lint ✅
-- backend build ✅
-- backend test ✅
-- backend e2e smoke (`/health`) ✅
-- prisma validate ✅
-- prisma generate ✅
-- frontend build ✅
+- 已按要求将 `DATABASE_URL` 切到远端 MySQL：
+  - `mysql://realworld:******@192.168.31.16:3306/realworld`
+- `npx prisma migrate status`：数据库 schema 已最新。
+- `npx prisma migrate dev` 在该账号下失败原因为 shadow database 权限不足（P3014/P1010），
+  但通过 `prisma migrate deploy` 已成功应用迁移并达到生产验收目标。
+- `npm run start:dev`：后端可成功启动并完成路由注册。
+- `./scripts/e2e-mvp.sh`：注册/登录/当前用户/发文/列表/详情/评论/标签/删评全链路通过。
 
 ---
 
-## 本轮关键补全
+## 验证清单
 
-- 新增后端 `SKIP_PRISMA_CONNECT=true` 开关，支持无 MySQL 环境下启动/烟测。
-- 修复并更新 e2e 用例：从旧 `/` HelloWorld 改为 `/health`。
-- 将 e2e smoke 纳入无 MySQL 验收脚本。
+- backend
+  - lint ✅
+  - build ✅
+  - test ✅
+  - test:e2e ✅
+- prisma
+  - migrate status ✅
+  - migrate deploy ✅
+- frontend
+  - build ✅
+- integration
+  - scripts/e2e-mvp.sh ✅
 
 ---
 
-## 仍待 MySQL 阶段补齐
+## 备注
 
-1. 启动 MySQL（docker 或本机服务）
-2. `prisma migrate dev/deploy`
-3. 启动 backend/frontend
-4. 运行 `scripts/e2e-mvp.sh` 完成 MVP 端到端联调验收
-5. 更新本报告为全绿
+- 若后续必须使用 `prisma migrate dev`，需要为当前 DB 用户补充创建 shadow database 的权限。
+- 当前交付已满足 P0 验收目标与 MySQL 阶段联调闭环。
