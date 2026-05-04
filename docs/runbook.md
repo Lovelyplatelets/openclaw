@@ -13,16 +13,20 @@ Checks:
 
 ## Stage B: MySQL-ready full validation (when DB available)
 
-1. Start MySQL and ensure `DATABASE_URL` works.
-2. Run migrations:
+1. Start MySQL + full acceptance in one shot:
+
+```bash
+./scripts/mysql-full-acceptance.sh
+```
+
+Or run steps manually:
 
 ```bash
 cd backend
 npx prisma migrate dev
 ```
 
-3. Start backend (`npm run start:dev`) and frontend (`npm run dev`).
-4. Run MVP e2e:
+Then start backend (`npm run start:dev`) and frontend (`npm run dev`), and run:
 
 ```bash
 ./scripts/e2e-mvp.sh

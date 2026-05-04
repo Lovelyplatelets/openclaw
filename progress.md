@@ -21,12 +21,14 @@
 - 修复后端 lint 问题（unused import / floating promise）。
 - 新增仓库根 `.gitignore`，清理 node_modules/dist/.env 版本污染风险。
 - 修复文章+标签关联流程，避免真实 DB 写入失败。
-- 新增无 MySQL 验收脚本 `scripts/acceptance-no-mysql.sh` 并执行通过：
-  - backend lint/build/test ✅
-  - backend e2e smoke ✅
-  - prisma validate/generate ✅
-  - frontend build ✅
+- 新增无 MySQL 验收脚本 `scripts/acceptance-no-mysql.sh` 并执行通过。
 - 新增 `SKIP_PRISMA_CONNECT` 开关，支持无 MySQL 环境后端启动与 e2e。
 - 新增 MySQL 就绪后 MVP 端到端脚本 `scripts/e2e-mvp.sh`。
 - 新增 `docs/runbook.md`，统一无 MySQL 阶段与 MySQL 阶段执行手册。
-- 按用户新指令，MySQL 阶段暂跳过，先完成其余任务并形成验收报告。
+
+## 2026-05-04（MySQL阶段切换）
+- 按用户要求切换到 MySQL 相关开发。
+- 生成 Prisma 初始迁移：`backend/prisma/migrations/20260504000000_init/migration.sql`。
+- 增强 `docker-compose.yml`：增加 MySQL 健康检查。
+- 新增一键全量脚本：`scripts/mysql-full-acceptance.sh`（起库→迁移→非MySQL验收→MVP e2e）。
+- 运行环境检查：当前宿主机仍无 `docker` 可执行；`prisma migrate status` 报 `P1001 localhost:3306` 不可达（环境阻塞，非代码问题）。
