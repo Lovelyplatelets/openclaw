@@ -23,6 +23,8 @@
 - 修复文章+标签关联流程，避免真实 DB 写入失败。
 - 新增无 MySQL 验收脚本 `scripts/acceptance-no-mysql.sh` 并执行通过：
   - backend lint/build/test ✅
+  - backend e2e smoke ✅
   - prisma validate/generate ✅
   - frontend build ✅
+- 新增 `SKIP_PRISMA_CONNECT` 开关，支持无 MySQL 环境后端启动与 e2e。
 - 按用户新指令，MySQL 阶段暂跳过，先完成其余任务并形成验收报告。

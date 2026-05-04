@@ -7,10 +7,18 @@ export class PrismaService
   implements OnModuleInit, OnModuleDestroy
 {
   async onModuleInit() {
+    const skipPrismaConnect = process.env.SKIP_PRISMA_CONNECT === 'true';
+    if (skipPrismaConnect) {
+      return;
+    }
     await this.$connect();
   }
 
   async onModuleDestroy() {
+    const skipPrismaConnect = process.env.SKIP_PRISMA_CONNECT === 'true';
+    if (skipPrismaConnect) {
+      return;
+    }
     await this.$disconnect();
   }
 }
