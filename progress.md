@@ -20,11 +20,9 @@
 - 完成 App 路由壳与样式体系重构。
 - 修复后端 lint 问题（unused import / floating promise）。
 - 新增仓库根 `.gitignore`，清理 node_modules/dist/.env 版本污染风险。
-- 新增并更新 `docs/acceptance-report.md`（P0 验收现状、阻塞、复测记录）。
-- 再次验证通过：
-  - frontend `npm run build` ✅
-  - backend `npm run build` ✅
-  - backend `npm run test` ✅
-  - backend `npm run lint` ✅
-  - prisma `validate/generate` ✅
-- 当前阻塞：运行环境缺少 `docker` / `mysqld`，无法在本机完成 MySQL 启动与 `prisma migrate` 真落库验证。
+- 修复文章+标签关联流程，避免真实 DB 写入失败。
+- 新增无 MySQL 验收脚本 `scripts/acceptance-no-mysql.sh` 并执行通过：
+  - backend lint/build/test ✅
+  - prisma validate/generate ✅
+  - frontend build ✅
+- 按用户新指令，MySQL 阶段暂跳过，先完成其余任务并形成验收报告。

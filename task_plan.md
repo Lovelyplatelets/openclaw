@@ -7,20 +7,22 @@
 - 技术栈固定：Vue 3 + TypeScript + Vite + Pinia + Vue Router / NestJS + Prisma + TypeScript / MySQL
 - 必须自检：发现问题后修复，再重新验证
 - 未通过所有 P0 前，不允许宣布完成
+- 用户最新指令：暂不安装 MySQL，先完成后续非 DB 阶段
 
 ## Phases
 - [complete] Phase 1: 项目骨架、目录结构、基础配置、Docker MySQL
-- [in_progress] Phase 2: 后端 NestJS + Prisma + MySQL 初始化与健康检查
+- [complete] Phase 2: 后端 NestJS + Prisma 初始化与健康检查（无 MySQL模式）
 - [complete] Phase 3: 后端认证/用户/文章/标签/评论核心 API
 - [complete] Phase 4: 前端 Vue 3 + Vite + Pinia + Router + API 封装
 - [complete] Phase 5: 前端首页/登录/注册/文章详情/发布文章页面
-- [in_progress] Phase 6: 联调、测试、构建、验收报告
-- [pending] Phase 7: 版本提交与 SSH 推送
+- [complete] Phase 6: 联调前自检、构建、验收报告（无 MySQL模式）
+- [in_progress] Phase 7: 版本提交与 SSH 推送
+- [pending] Phase 8: MySQL 落地后端到端验收补全
 
 ## Acceptance Targets
-- MySQL 可启动
-- Prisma validate/generate/migrate 通过
+- MySQL 可启动（已按指令暂跳过）
+- Prisma validate/generate/migrate 通过（migrate 待 MySQL 阶段补齐）
 - backend build/test 通过
 - frontend build 通过
-- 注册/登录/当前用户/文章列表/文章详情/发布文章/评论/标签 MVP 可用
+- 注册/登录/当前用户/文章列表/文章详情/发布文章/评论/标签 MVP 可用（端到端待 DB）
 - 输出完整验收报告
