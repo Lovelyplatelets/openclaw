@@ -27,4 +27,6 @@
   - prisma validate/generate ✅
   - frontend build ✅
 - 新增 `SKIP_PRISMA_CONNECT` 开关，支持无 MySQL 环境后端启动与 e2e。
+- 新增 MySQL 就绪后 MVP 端到端脚本 `scripts/e2e-mvp.sh`。
+- 新增 `docs/runbook.md`，统一无 MySQL 阶段与 MySQL 阶段执行手册。
 - 按用户新指令，MySQL 阶段暂跳过，先完成其余任务并形成验收报告。

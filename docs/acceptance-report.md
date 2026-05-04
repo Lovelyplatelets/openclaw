@@ -43,5 +43,6 @@
 
 1. 启动 MySQL（docker 或本机服务）
 2. `prisma migrate dev/deploy`
-3. 注册/登录/当前用户/文章/评论/标签端到端联调与验收
-4. 更新本报告为全绿
+3. 启动 backend/frontend
+4. 运行 `scripts/e2e-mvp.sh` 完成 MVP 端到端联调验收
+5. 更新本报告为全绿
