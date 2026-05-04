@@ -4,7 +4,8 @@
 将 `/home/node/.openclaw/workspace-engineer/code/openclaw-realword` 建成可运行的 RealWorld / Conduit 全栈项目，满足《验收标准》中所有 P0 项，且每个大版本完成后使用 SSH 推送到 GitHub。
 
 ## Current Status
-- 所有 P0 项已完成并验收通过。
+- 已按验收标准逐项复核，P0 全部通过。
+- 无遗漏需求。
 
 ## Phases
 - [complete] Phase 1: 项目骨架、目录结构、基础配置、Docker MySQL
@@ -15,6 +16,7 @@
 - [complete] Phase 6: 联调、自检、构建、验收报告
 - [complete] Phase 7: MySQL 落地链路（迁移、脚本、runbook、全量验收）
 - [complete] Phase 8: MySQL 真实环境端到端验收补全与全绿报告
+- [complete] Phase 9: 按标准逐项复核与遗漏补齐（本轮）
 
 ## Acceptance Targets
 - MySQL 可启动 ✅

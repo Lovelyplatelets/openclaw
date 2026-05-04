@@ -1,15 +1,9 @@
 # Progress Log
 
-## 2026-05-03
-- 初始化计划文件与目标。
-- 明确 P0 验收边界与阶段拆分。
-
-## 2026-05-04
-- 完成前后端骨架、核心 API、页面、路由、状态管理。
-- 完成后端 lint/build/test 与前端 build 验证。
-- 生成并应用 Prisma 初始迁移。
-- MySQL 改为远端地址 `192.168.31.16:3306` 后联通成功。
-- 后端 `start:dev` 启动成功。
-- 修复 `scripts/e2e-mvp.sh` JSON 解析缺陷（heredoc 吞 stdin），端到端脚本跑通。
-- 完成 MVP 全链路联调：注册、登录、当前用户、发文、列表、详情、评论、标签、删评。
-- P0 验收项全部完成。
+## 2026-05-04（验收标准复核）
+- 按用户要求，基于练习计划文档与验收标准做逐项硬验证。
+- 复跑 Prisma：`migrate status`、`migrate dev --name init`、`generate` 全部通过。
+- 复跑 backend：`lint/build/test/test:e2e` 全部通过。
+- 复跑 frontend：`build` 通过。
+- 启动后端并复跑 `scripts/e2e-mvp.sh`，MVP 全链路通过。
+- 更新验收报告、任务计划与进度日志，确认无遗漏需求。
